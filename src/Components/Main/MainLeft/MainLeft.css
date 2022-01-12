@@ -1,3 +1,16 @@
+.color-gray {
+  color: grey;
+}
+.color-orange {
+  color: #fb6801;
+}
+.color-green {
+  color: #006a4e;
+}
+.bg-blue {
+  background: #0097e6 !important;
+}
+
 .main-left {
   top: 70px;
   width: 270px;

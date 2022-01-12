@@ -24,7 +24,11 @@ const Fresh = () => {
         .then(res => setProducts(res))
     },[] );
 
-    console.log(products);
+    const addToCart =(id)=>{
+        console.log('add to cart',id);
+    }
+
+    // console.log(products);
 
     return (
         <div className="fresh">
@@ -71,7 +75,7 @@ const Fresh = () => {
                                 </div>
                             </div>
                             <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
+                                <button onClick={()=> addToCart(product.id) } >Add To Cart</button>
                             </div>
                         </div>)
                         }
