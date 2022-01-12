@@ -1,0 +1,167 @@
+/* fresh products start */
+.commom-card-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-gap: 20px;
+}
+.common-single-product-cart {
+  /* border: 1px solid black; */
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(251, 231, 231, 0.38823529411764707);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.13);
+  margin: 10px 0;
+  cursor: pointer;
+  /* height: 380px;
+  overflow: hidden; */
+}
+
+.cart-top-tag {
+  background: #44bd32;
+  font-size: 12px;
+  color: white;
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 300;
+  z-index: 1;
+}
+
+.cart-image {
+  min-width: 130px;
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-image img {
+  width: 120px;
+  height: 115px;
+  transition: 0.5s all ease-in-out;
+}
+.cart-image:hover img {
+  transform: scale(1.4);
+}
+.cart-name-price-area {
+  z-index: 1;
+  margin-top: -10px;
+  /* background: green; */
+  min-height: 110px;
+}
+.product-name {
+  font-size: 16px;
+  line-height: 25px;
+  color: #1a1a1a;
+  padding: 0 15px;
+  font-weight: 500;
+  margin: 0;
+  z-index: 1;
+}
+.product-subtext {
+  font-size: 12px;
+  margin-top: 3px;
+  color: #fb6801;
+  font-weight: 500;
+  margin-top: 3px;
+  margin-bottom: 0;
+}
+.product-price {
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.product-price-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #605e58;
+}
+
+.product-detail-btn button {
+  border: 1px solid #006a4e;
+  font-size: 12px;
+  padding: 3px 10px 2px 10px;
+  font-weight: 600;
+  color: #006a4e;
+  background: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.product-delivery-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 28px;
+}
+.delivery-status-left,
+.delivery-status-right {
+  display: flex;
+  align-items: center;
+}
+.delivery-status-left span {
+  font-weight: 500;
+  color: #9b9898;
+  line-height: 25px;
+  font-size: 11px;
+}
+.delivery-status-left img {
+  margin-right: 10px;
+}
+.delivery-status-right {
+  padding-right: 10px;
+}
+.delivery-status-left img,
+.taka,
+.credit-card {
+  height: 22px;
+}
+.taka {
+}
+.credit-card {
+  margin-right: 5px;
+}
+
+.add-to-cart-btn {
+  display: flex;
+  align-items: center;
+}
+.add-to-cart-btn button {
+  position: absolute;
+  background: #006a4e;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: white;
+  border-radius: 3px;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  outline: none;
+}
+.add-to-cart-btn button:hover {
+  /* transform: scaleY(1.05); */
+  margin-top: -2px;
+}
+.common-show-more-btn {
+  padding-top: 30px;
+  /* padding-bottom: 25px; */
+  text-align: right;
+}
+.common-show-more-btn button {
+  cursor: pointer;
+  color: #9c9c9c;
+  font-size: 15px;
+  font-weight: 600;
+  background: #fff;
+  padding: 7px 20px;
+  border-radius: 3px;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 12%), 0 0 0 rgb(0 0 0 / 24%);
+}

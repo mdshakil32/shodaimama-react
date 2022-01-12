@@ -1,0 +1,9 @@
+.right-content {
+  max-width: 1240px;
+  /* width: 100%; */
+  margin-top: 121px;
+  background-color: white;
+  padding: 0 15px;
+  margin-left: auto;
+  margin-right: auto;
+}

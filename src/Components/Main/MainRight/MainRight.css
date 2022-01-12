@@ -1,0 +1,7 @@
+.main-right {
+  background-color: white;
+  /* height: 1000px; */
+  width: calc(100% - 270px);
+  margin-left: 270px;
+  position: relative;
+}

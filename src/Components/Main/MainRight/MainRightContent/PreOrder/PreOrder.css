@@ -1,0 +1,77 @@
+.common-header {
+  background: hsla(0, 0%, 50.2%, 0.09019607843137255);
+  position: relative;
+  padding: 15px 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.common-green-border {
+  background: rgb(68, 189, 50);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 70%;
+  width: 10px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-radius: 5px;
+}
+.common-header-title {
+  font-size: 25px;
+  font-weight: 600;
+  /* line-height: 40px; */
+  color: #313131;
+  margin: 0;
+}
+.common-header-subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+  line-height: 30px;
+  color: #313131;
+  margin: 0;
+}
+
+.preorder-card {
+  min-height: 223px;
+  width: 220px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+  margin-top: 45px;
+}
+.preorder-card a {
+  text-decoration: none;
+}
+.preorder-card-img {
+  height: 170px;
+  position: relative;
+  overflow: hidden;
+}
+.preorder-card-img img {
+  width: 100%;
+  height: 170px;
+  transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  object-fit: cover;
+}
+.preorder-card:hover .preorder-card-img img {
+  /* margin: 0 auto; */
+  transform: scale(1.2);
+  /* object-fit: cover; */
+}
+.preorder-card-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.preorder-card-text p {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 3px 10px;
+  color: #615e58;
+  margin: 0;
+}
+.preorder-card-text img {
+  width: 18px;
+}
