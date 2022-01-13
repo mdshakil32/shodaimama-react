@@ -12,9 +12,10 @@ import tomato from "../../../../../assets/fresh/tomato.webp";
 import pumpkin from "../../../../../assets/fresh/pumpkin.webp";
 import roasrchicken from "../../../../../assets/fresh/roasr-chicken.jpeg";
 import skinnoffchicken from "../../../../../assets/fresh/skinn-off-chicken.webp";
+import { addToDb } from '../../../../../localstorage/localstorage';
 
 
-const Fresh = () => {
+const Fresh = ({cart,setCart}) => {
 
     const [products,setProducts] = useState([]);
 
@@ -24,8 +25,28 @@ const Fresh = () => {
         .then(res => setProducts(res))
     },[] );
 
-    const addToCart =(id)=>{
-        console.log('add to cart',id);
+
+    console.log(cart)
+    const clickAddToCart = (data) => {
+        handleAddToCart(data)
+    }
+
+    const handleAddToCart = (product) => {
+        const exists = cart.find(pd => pd.id === product.id);
+        let newCart = [];
+        if (exists) {
+            const rest = cart.filter(pd => pd.id !== product.id);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest, product];
+        }
+        else {
+            product.quantity = 1;
+            newCart = [...cart, product];
+        }
+        setCart(newCart);
+        // save to local storage (for now)
+         addToDb(product.id);
+
     }
 
     // console.log(products);
@@ -75,7 +96,7 @@ const Fresh = () => {
                                 </div>
                             </div>
                             <div className="add-to-cart-btn">
-                                <button onClick={()=> addToCart(product.id) } >Add To Cart</button>
+                                <button onClick={()=> clickAddToCart(product) } >Add To Cart</button>
                             </div>
                         </div>)
                         }

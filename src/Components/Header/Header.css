@@ -21,6 +21,10 @@
   display: flex;
   align-items: center;
   gap: 30px;
+  text-decoration: none;
+}
+.header-right a {
+  text-decoration: none;
 }
 
 /* header search icon */

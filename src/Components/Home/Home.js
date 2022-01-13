@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Home.css";
 
 import Header from '../Header/Header';
@@ -13,10 +13,13 @@ import Category from '../Main/MainRight/MainRightContent/Category/Category';
 import WhyShodaiMama from '../Main/MainRight/MainRightContent/WhyShodaiMama/WhyShodaiMama';
 
 const Home = () => {
+
+    const [cart, setCart] = useState([])
+
+
     return (
         <>
-            <Header></Header>
-            {/* <Main></Main> */}
+            <Header cart={cart}></Header>
 
             <div className='main'>
                 <MainLeft></MainLeft>
@@ -26,7 +29,7 @@ const Home = () => {
                     <div className='right-content'>
                         <Slider></Slider>
                         <PreOrder></PreOrder>
-                        <Fresh></Fresh>
+                        <Fresh setCart={setCart} cart={cart}></Fresh>
                         <Regular></Regular>
                         <Category></Category>
                         <WhyShodaiMama></WhyShodaiMama>
