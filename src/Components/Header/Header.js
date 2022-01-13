@@ -14,13 +14,13 @@ const Header = ({ cart }) => {
 
     let totalQuantity = 0;
     let total = 0;
-    for (const product of cart) {
-        if (!product.quantity) {
-            product.quantity = 1;
-        }
-        total = total + product.price * product.quantity;
-        totalQuantity = totalQuantity + product.quantity;
-    }
+    // for (const product of cart) {
+    //     if (!product.quantity) {
+    //         product.quantity = 1;
+    //     }
+    //     total = total + product.price * product.quantity;
+    //     totalQuantity = totalQuantity + product.quantity;
+    // }
 
     const LocalSave = getStoredCart();
     console.log(LocalSave)
@@ -75,13 +75,15 @@ const Header = ({ cart }) => {
                 {/* <!-- carts item quantity  --> */}
                 <p className="cart-quantity">
                     <img src={artBoard} alt="" />
-                    {cart.length}
+                    {/* {cart.length} */}
+                    5
                 </p>
         
                 {/* <!-- carts item price  --> */}
                 <p className="cart-price">
                     <span className="taka">৳ </span>
-                    {total.toFixed(2)}
+                    {/* {total.toFixed(2)} */}
+                    80
                 </p>
         
             </div></Link>

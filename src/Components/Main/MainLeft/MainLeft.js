@@ -16,6 +16,7 @@ import kids from "../../../assets/sidebar/kids.png"
 import personal from "../../../assets/sidebar/personal.png"
 import kitchen from "../../../assets/sidebar/kitchen.png"
 import stationary from "../../../assets/sidebar/stationary.png"
+import { Link } from 'react-router-dom';
 
 const MainLeft = () => {
     return (
@@ -26,10 +27,10 @@ const MainLeft = () => {
                 
                     {/* <!-- sidebar-single-item  --> */}
                     <li className="sidebar-single-item">
-                        <a className="side-bar-link" href="#">
+                        <Link to="/" className="side-bar-link" href="#">
                             <img src={home} alt="" />
                             Home
-                        </a>
+                        </Link>
                     </li>
                     {/* <!-- sidebar-single-item  --> */}
                     <li className="sidebar-single-item">
