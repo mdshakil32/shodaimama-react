@@ -113,3 +113,23 @@
 .cart-price span {
   font-size: 13px;
 }
+
+@media only screen and (max-width: 768px) {
+  .header-logo {
+    width: 70px;
+  }
+  .search img {
+    width: 15px;
+  }
+  .header-right .location,
+  .sign-in {
+    font-size: 14px;
+  }
+  .header-right .cart-icon img {
+    width: 22px;
+  }
+  .location p,
+  .sign-in p {
+    display: none;
+  }
+}
