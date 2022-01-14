@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Regular.css";
 
 import card from "../../../../../assets/common/card.png";
@@ -12,9 +12,53 @@ import oats from "../../../../../assets/regular/oats.jpg";
 import coffe from "../../../../../assets/regular/coffe.webp";
 import horlicks from "../../../../../assets/regular/horlicks.jpg";
 import nuttela from "../../../../../assets/regular/nuttela.jpg";
+import { addToDb, getStoredCart } from '../../../../../localstorage/localstorage';
 
 
-const Regular = () => {
+const Regular = ({cart,setCart}) => {
+    const [products,setProducts] = useState([]);
+
+    useEffect(()=>{
+        fetch('https://fakestoreapi.com/products')
+        .then(data => data.json())
+        .then(res => setProducts(res))
+    },[] );
+
+    const LocalSave = getStoredCart();
+
+    const clickAddToCart = (data) => {
+        // console.log(cart);
+        handleAddToCart(data)
+    }
+    
+    console.log('cart',cart);
+    if(LocalSave){
+        console.log('LocalSave',LocalSave);
+    }
+    if(!LocalSave){
+        console.log('LocalSave nai',LocalSave);
+    }
+    
+    
+    const handleAddToCart = (product) => {
+        const exists = cart?.find(pd => pd.id === product.id);
+        let newCart = [];
+        if (exists) {
+            const rest = cart.filter(pd => pd.id !== product.id);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest, product];
+        }
+        else {
+            product.quantity = 1;
+            newCart = [...cart, product];
+        }
+
+        setCart(newCart);
+        addToDb(newCart);
+
+    }
+
+
     return (
         <div className="regular">
                 
@@ -62,20 +106,21 @@ const Regular = () => {
                         </div>
                         {/* <!--regular single cart end  --> */}
 
-
-                        {/* <!--regular single cart start  --> */}
-                        <div className="common-single-product-cart ">
-                            <div className="cart-top-tag bg-blue ">
+                        {/* single regular item start */}
+                        {
+                            products.map(product => 
+                            <div key={product.id} className="common-single-product-cart fresh-single-item">
+                            <div className="cart-top-tag bg-blue">
                                 Regular
                             </div>
                             <div className="cart-image">
-                                <img src={egg} alt=""/>
+                                <img src={product.image} alt=""/>
                             </div>
                             <div className="cart-name-price-area">
-                                <p className="product-name">Chicken Eggs (Layer)</p>
-                                <p className="product-subtext">12 pcs</p>
-                                <p className="product-price">৳
-                                    <span className="product-price-value">115</span>
+                                <p className="product-name">{product.title.slice(0,25) } </p>
+                                <p className="product-subtext">{product.category} </p>
+                                <p className="product-price">৳ 
+                                    <span className="product-price-value">{product.price}</span>
                                 </p>
                             </div>
                             <div className="product-detail-btn">
@@ -88,224 +133,16 @@ const Regular = () => {
                                 </div>
                                 <div className="delivery-status-right">
                                     <img className="credit-card" src={card} alt=""/>
-                                    <img className="taka" src={taka} alt=""/>
+                                    <img className="taka" src={taka} alt=""/>  
                                 </div>
                             </div>
+
                             <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
+                                <button onClick={() => clickAddToCart(product)} >Add To Cart</button>
                             </div>
-                        </div>
-                        {/* <!--regular single cart end  --> */}
-
-
-                        {/* <!--regular single cart start  --> */}
-                        <div className="common-single-product-cart ">
-                            <div className="cart-top-tag bg-blue ">
-                                Regular
-                            </div>
-                            <div className="cart-image">
-                                <img src={noodles} alt=""/>
-                            </div>
-                            <div className="cart-name-price-area">
-                                <p className="product-name">Chopstick Masala Noodles</p>
-                                <p className="product-subtext">8 pack</p>
-                                <p className="product-price">৳
-                                    <span className="product-price-value">140</span>
-                                </p>
-                            </div>
-                            <div className="product-detail-btn">
-                                <button>Details</button>
-                            </div>
-                            <div className="product-delivery-status">
-                                <div className="delivery-status-left">
-                                    <img src={bike} alt=""/>
-                                    <span>Next Morning</span>
-                                </div>
-                                <div className="delivery-status-right">
-                                    <img className="credit-card" src={card} alt=""/>
-                                    <img className="taka" src={taka} alt=""/>
-                                </div>
-                            </div>
-                            <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
-                            </div>
-                        </div>
-                        {/* <!--regular single cart end  --> */}
-
-
-                        {/* <!--regular single cart start  --> */}
-                        <div className="common-single-product-cart ">
-                            <div className="cart-top-tag bg-blue ">
-                                Regular
-                            </div>
-                            <div className="cart-image">
-                                <img src={rupchada} alt=""/>
-                            </div>
-                            <div className="cart-name-price-area">
-                                <p className="product-name">Rupchanda Soyabean oil</p>
-                                <p className="product-subtext">5 ltr</p>
-                                <p className="product-price">৳
-                                    <span className="product-price-value">760</span>
-                                </p>
-                            </div>
-                            <div className="product-detail-btn">
-                                <button>Details</button>
-                            </div>
-                            <div className="product-delivery-status">
-                                <div className="delivery-status-left">
-                                    <img src={bike} alt=""/>
-                                    <span>Next Morning</span>
-                                </div>
-                                <div className="delivery-status-right">
-                                    <img className="credit-card" src={card} alt=""/>
-                                    <img className="taka" src={taka} alt=""/>
-                                </div>
-                            </div>
-                            <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
-                            </div>
-                        </div>
-                        {/* <!--regular single cart end  --> */}
-
-
-                        {/* <!--regular single cart start  --> */}
-                        <div className="common-single-product-cart ">
-                            <div className="cart-top-tag bg-blue ">
-                                Regular
-                            </div>
-                            <div className="cart-image">
-                                <img src={oats} alt=""/>
-                            </div>
-                            <div className="cart-name-price-area">
-                                <p className="product-name">Quaker Oats Poly</p>
-                                <p className="product-subtext">450 gm</p>
-                                <p className="product-price">৳
-                                    <span className="product-price-value">265</span>
-                                </p>
-                            </div>
-                            <div className="product-detail-btn">
-                                <button>Details</button>
-                            </div>
-                            <div className="product-delivery-status">
-                                <div className="delivery-status-left">
-                                    <img src={bike} alt=""/>
-                                    <span>Next Morning</span>
-                                </div>
-                                <div className="delivery-status-right">
-                                    <img className="credit-card" src={card} alt=""/>
-                                    <img className="taka" src={taka} alt=""/>
-                                </div>
-                            </div>
-                            <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
-                            </div>
-                        </div>
-                        {/* <!--regular single cart end  --> */}
-
-
-                        {/* <!--regular single cart start  --> */}
-                        <div className="common-single-product-cart ">
-                            <div className="cart-top-tag bg-blue ">
-                                Regular
-                            </div>
-                            <div className="cart-image">
-                                <img src={coffe} alt=""/>
-                            </div>
-                            <div className="cart-name-price-area">
-                                <p className="product-name">Bru Pure Instant Coffee Jar</p>
-                                <p className="product-subtext">100 gm</p>
-                                <p className="product-price">৳
-                                    <span className="product-price-value">449</span>
-                                </p>
-                            </div>
-                            <div className="product-detail-btn">
-                                <button>Details</button>
-                            </div>
-                            <div className="product-delivery-status">
-                                <div className="delivery-status-left">
-                                    <img src={bike} alt=""/>
-                                    <span>Next Morning</span>
-                                </div>
-                                <div className="delivery-status-right">
-                                    <img className="credit-card" src={card} alt=""/>
-                                    <img className="taka" src={taka} alt=""/>
-                                </div>
-                            </div>
-                            <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
-                            </div>
-                        </div>
-                        {/* <!--regular single cart end  --> */}
-
-
-                        {/* <!--regular single cart start  --> */}
-                        <div className="common-single-product-cart ">
-                            <div className="cart-top-tag bg-blue ">
-                                Regular
-                            </div>
-                            <div className="cart-image">
-                                <img src={horlicks} alt=""/>
-                            </div>
-                            <div className="cart-name-price-area">
-                                <p className="product-name">Horlicks Health And Nutrition Drink Jar</p>
-                                <p className="product-subtext">500 gm</p>
-                                <p className="product-price">৳
-                                    <span className="product-price-value">350</span>
-                                </p>
-                            </div>
-                            <div className="product-detail-btn">
-                                <button>Details</button>
-                            </div>
-                            <div className="product-delivery-status">
-                                <div className="delivery-status-left">
-                                    <img src={bike} alt=""/>
-                                    <span>Next Morning</span>
-                                </div>
-                                <div className="delivery-status-right">
-                                    <img className="credit-card" src={card} alt=""/>
-                                    <img className="taka" src={taka} alt=""/>
-                                </div>
-                            </div>
-                            <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
-                            </div>
-                        </div>
-                        {/* <!-- single cart end  --> */}
-
-
-                        {/* <!--regular single cart start  --> */}
-                        <div className="common-single-product-cart ">
-                            <div className="cart-top-tag bg-blue ">
-                                Regular
-                            </div>
-                            <div className="cart-image">
-                                <img src={nuttela} alt=""/>
-                            </div>
-                            <div className="cart-name-price-area">
-                                <p className="product-name">Nutella Hazelnut Cocoa Spread</p>
-                                <p className="product-subtext">350 gm</p>
-                                <p className="product-price">৳
-                                    <span className="product-price-value">520</span>
-                                </p>
-                            </div>
-                            <div className="product-detail-btn">
-                                <button>Details</button>
-                            </div>
-                            <div className="product-delivery-status">
-                                <div className="delivery-status-left">
-                                    <img src={bike} alt=""/>
-                                    <span>Next Morning</span>
-                                </div>
-                                <div className="delivery-status-right">
-                                    <img className="credit-card" src={card} alt=""/>
-                                    <img className="taka" src={taka} alt=""/>
-                                </div>
-                            </div>
-                            <div className="add-to-cart-btn">
-                                <button>Add To Cart</button>
-                            </div>
-                        </div>
-                        {/* <!-- regular single cart end  --> */}
+                        </div>)
+                        }
+                        {/* single regular item end */}
                 
                 
                 

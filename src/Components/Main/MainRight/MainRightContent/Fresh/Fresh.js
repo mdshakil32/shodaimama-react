@@ -24,6 +24,7 @@ const Fresh = ({cart,setCart}) => {
         .then(data => data.json())
         .then(res => setProducts(res))
     },[] );
+    
     const LocalSave = getStoredCart();
 
     const clickAddToCart = (data) => {

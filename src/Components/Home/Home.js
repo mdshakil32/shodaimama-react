@@ -39,7 +39,7 @@ const Home = () => {
                         <Slider></Slider>
                         <PreOrder></PreOrder>
                         <Fresh setCart={setCart} cart={cart}></Fresh>
-                        <Regular></Regular>
+                        <Regular setCart={setCart} cart={cart}></Regular>
                         <Category></Category>
                         <WhyShodaiMama></WhyShodaiMama>
                     </div>
