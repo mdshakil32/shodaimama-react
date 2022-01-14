@@ -12,7 +12,7 @@ import tomato from "../../../../../assets/fresh/tomato.webp";
 import pumpkin from "../../../../../assets/fresh/pumpkin.webp";
 import roasrchicken from "../../../../../assets/fresh/roasr-chicken.jpeg";
 import skinnoffchicken from "../../../../../assets/fresh/skinn-off-chicken.webp";
-import { addToDb } from '../../../../../localstorage/localstorage';
+import { addToDb,getStoredCart } from '../../../../../localstorage/localstorage';
 
 
 const Fresh = ({cart,setCart}) => {
@@ -26,13 +26,15 @@ const Fresh = ({cart,setCart}) => {
     },[] );
 
 
-    console.log(cart)
     const clickAddToCart = (data) => {
         handleAddToCart(data)
     }
-
+    const LocalSave = getStoredCart();
+    console.log(cart);
+    // console.log(LocalSave);
+    
     const handleAddToCart = (product) => {
-        const exists = cart.find(pd => pd.id === product.id);
+        const exists = cart?.find(pd => pd.id === product.id);
         let newCart = [];
         if (exists) {
             const rest = cart.filter(pd => pd.id !== product.id);
@@ -43,9 +45,9 @@ const Fresh = ({cart,setCart}) => {
             product.quantity = 1;
             newCart = [...cart, product];
         }
+
         setCart(newCart);
-        // save to local storage (for now)
-         addToDb(product.id);
+        addToDb(newCart);
 
     }
 
@@ -95,8 +97,9 @@ const Fresh = ({cart,setCart}) => {
                                     <img className="taka" src={taka} alt=""/>  
                                 </div>
                             </div>
+
                             <div className="add-to-cart-btn">
-                                <button onClick={()=> clickAddToCart(product) } >Add To Cart</button>
+                                <button onClick={() => clickAddToCart(product)} >Add To Cart</button>
                             </div>
                         </div>)
                         }

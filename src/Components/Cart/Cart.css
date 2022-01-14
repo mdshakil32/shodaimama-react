@@ -54,7 +54,7 @@
 /* cart right  */
 .cart-right {
   border-left: 1px solid #d3d3d3;
-  grid-column: 3/6;
+  grid-column: 2/6;
 }
 
 /* single product  */
@@ -99,6 +99,7 @@
 /* name  */
 .cart-product-name {
   font-weight: 300;
+  max-width: 200px;
 }
 .prod-title {
   font-size: 15px;
@@ -141,6 +142,7 @@
   position: sticky;
   bottom: 0;
   background-color: white;
+  height: 100px;
 }
 .cart-footer-left {
   display: flex;
@@ -178,11 +180,14 @@
   color: white;
   font-weight: 700;
   border: 1px solid transparent;
+  font-size: 20px;
+  cursor: pointer;
 }
 .delete-all-order {
   padding: 0 15px;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 35px;
   cursor: pointer;
   margin: 0;
+  color: rgb(164, 164, 164);
 }

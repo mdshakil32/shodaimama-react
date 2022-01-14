@@ -4,7 +4,7 @@ import logo from "../../assets/header/logo.png";
 import search from "../../assets/header/search.png";
 import location from "../../assets/header/location.png";
 import user from "../../assets/header/user.png";
-import cart from "../../assets/header/cart.png";
+import cartIcon from "../../assets/header/cart.png";
 import leftArrow from "../../assets/header/leftArrow.png";
 import artBoard from "../../assets/header/artBoard.png";
 import { Routes, Route, Link } from "react-router-dom";
@@ -12,18 +12,19 @@ import { getStoredCart } from '../../localstorage/localstorage';
 
 const Header = ({ cart }) => {
 
+     // console.log(cart)
     let totalQuantity = 0;
     let total = 0;
-    // for (const product of cart) {
-    //     if (!product.quantity) {
-    //         product.quantity = 1;
-    //     }
-    //     total = total + product.price * product.quantity;
-    //     totalQuantity = totalQuantity + product.quantity;
-    // }
-
     const LocalSave = getStoredCart();
-    console.log(LocalSave)
+    if (LocalSave.length) {
+        for (const product of LocalSave) {
+            if (!product.quantity) {
+                product.quantity = 1;
+            }
+            total = total + (product.price * product.quantity);
+            totalQuantity = totalQuantity + product.quantity;
+        }
+    }
 
 
     return (
@@ -58,7 +59,7 @@ const Header = ({ cart }) => {
         
             {/* <!-- cart-icon  --> */}
             <div className="cart-icon">
-                <img src={cart} alt="" />
+                <img src={cartIcon} alt="" />
             </div>
         
             
@@ -75,15 +76,15 @@ const Header = ({ cart }) => {
                 {/* <!-- carts item quantity  --> */}
                 <p className="cart-quantity">
                     <img src={artBoard} alt="" />
-                    {/* {cart.length} */}
-                    5
+                    {totalQuantity}
+                    {/* 0 */}
                 </p>
         
                 {/* <!-- carts item price  --> */}
                 <p className="cart-price">
                     <span className="taka">৳ </span>
-                    {/* {total.toFixed(2)} */}
-                    80
+                     {total.toFixed(0)}
+                    
                 </p>
         
             </div></Link>
