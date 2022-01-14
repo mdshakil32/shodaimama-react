@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Home.css";
 
 import Header from '../Header/Header';
@@ -11,10 +11,19 @@ import Fresh from '../Main/MainRight/MainRightContent/Fresh/Fresh';
 import Regular from '../Main/MainRight/MainRightContent/Regular/Regular';
 import Category from '../Main/MainRight/MainRightContent/Category/Category';
 import WhyShodaiMama from '../Main/MainRight/MainRightContent/WhyShodaiMama/WhyShodaiMama';
+import { getStoredCart } from '../../localstorage/localstorage';
+
 
 const Home = () => {
 
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([]);
+    const LocalSave = getStoredCart();
+
+        //  useEffect(()=>{
+        //     setCart(LocalSave);
+        // },[] );
+        
+    
 
 
     return (

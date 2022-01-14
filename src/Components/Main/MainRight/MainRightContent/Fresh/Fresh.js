@@ -24,14 +24,21 @@ const Fresh = ({cart,setCart}) => {
         .then(data => data.json())
         .then(res => setProducts(res))
     },[] );
-
+    const LocalSave = getStoredCart();
 
     const clickAddToCart = (data) => {
+        // console.log(cart);
         handleAddToCart(data)
     }
-    const LocalSave = getStoredCart();
-    console.log(cart);
-    // console.log(LocalSave);
+    
+    console.log('cart',cart);
+    if(LocalSave){
+        console.log('LocalSave',LocalSave);
+    }
+    if(!LocalSave){
+        console.log('LocalSave nai',LocalSave);
+    }
+    
     
     const handleAddToCart = (product) => {
         const exists = cart?.find(pd => pd.id === product.id);

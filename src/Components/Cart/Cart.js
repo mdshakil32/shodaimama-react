@@ -5,7 +5,8 @@ import './Cart.css';
 
 import pineaple from "../../assets/fresh/pineaple.webp"
 import cart from "../../assets/header/cart.png"
-import { getStoredCart,clearTheCart } from '../../localstorage/localstorage';
+import { getStoredCart,clearTheCart,removeFromDb ,addToDb} from '../../localstorage/localstorage';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
@@ -13,13 +14,12 @@ const Cart = () => {
     const [orders, setOrders] = useState(LocalSave);
     const [isChecked, setIChecked] = useState(true);
 
-    const deleteCart = ()=>{
-        clearTheCart();
-        setOrders({});
-        totalQuantity = 0;
-        totalPrice = 0;
-        console.log(orders)
-    } 
+    const handleDelete = (id) => {
+        console.log(id)
+        const newOrder = orders.filter(item => item.id !== id)
+        setOrders(newOrder)
+        addToDb(newOrder)
+    }
     
     let totalQuantity = 0;
     let totalPrice = 0;
@@ -28,16 +28,10 @@ const Cart = () => {
         for (const order of orders){
         totalQuantity = totalQuantity + order.quantity;
         totalPrice = totalPrice + (order.quantity * order.price);
-        console.log('order',order.quantity);
+        // console.log('order',order.quantity);
     }
     }
-    // if(Object.keys(orders).length === 0){
-    //     console.log('order nai');
-    // }
     
-    console.log(totalQuantity);
-    console.log(totalPrice);
-    console.log(orders);
     const hanfleCheckbox =(e)=>{
         setIChecked(e.target.checked);
     }
@@ -59,7 +53,7 @@ const Cart = () => {
                                     Products ( {totalQuantity} )
                                 </p>
                                 <p className='header-right'>
-                                    Subtotal: ৳ {totalPrice}
+                                    Subtotal: ৳ {totalPrice.toFixed(0)}
                                 </p>
                             </div>
 
@@ -78,7 +72,7 @@ const Cart = () => {
                                     </p>
 
                                     <p>
-                                        <span>Total  :   ৳ {totalPrice}</span>
+                                        <span>Total  :   ৳ {totalPrice.toFixed(0)}</span>
                                     </p>
                                     <p className='payment-type'>Cash & Digital Payment Accepted.</p>
                                 </div>
@@ -87,7 +81,7 @@ const Cart = () => {
 
                                 {/* single cart  */}
                                 {
-                                    orders?.length && orders.map(item => 
+                                    orders && orders.map(item => 
                                     <div className="single-cart-item" key={item.id} >
                                         <p className="single-cart-quantity">
                                             <button>+</button>
@@ -100,11 +94,11 @@ const Cart = () => {
                                         <div className="cart-product-name">
                                             <p className='prod-title'>{item.title}</p>
                                             <p className='prod-subtitle'>
-                                                <span className='red-taka'>৳</span> {item.price} / each</p>
+                                                <span className='red-taka'>৳</span> {item.price.toFixed(0)} / each</p>
                                         </div>
                                         <p className='prod-price' >
-                                            <span className='red-taka'>৳</span> {item.price * item.quantity} </p>
-                                        <p className='prod-delete'>×</p>
+                                            <span className='red-taka'>৳</span> {(item.price * item.quantity).toFixed(0)} </p>
+                                        <p onClick={()=> handleDelete(item.id) } className='prod-delete'>×</p>
                                     </div>)
                                 }
                                 {/* single cart  end */}
@@ -123,7 +117,7 @@ const Cart = () => {
                                 </p>
                                 <div className="cart-footer-right">
                                     {isChecked &&  <button className='place-order-btn'>Place Order</button>}
-                                    <p onClick={deleteCart} className='delete-all-order' >×</p>
+                                    <Link to="/" className='delete-all-order' >×</Link>
                                 </div>
                             </div>
 

@@ -184,6 +184,7 @@
   cursor: pointer;
 }
 .delete-all-order {
+  text-decoration: none;
   padding: 0 15px;
   font-weight: 400;
   font-size: 35px;

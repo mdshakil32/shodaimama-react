@@ -12,6 +12,8 @@ const getStoredCart = () => {
 }
 
 
+
+
 const removeFromDb = id => {
     const exists = getDb();
     if (!exists) {

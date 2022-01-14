@@ -15,7 +15,10 @@ const Header = ({ cart }) => {
      // console.log(cart)
     let totalQuantity = 0;
     let total = 0;
+
     const LocalSave = getStoredCart();
+    console.log('cart',cart,'LocalSave',LocalSave);
+
     if (LocalSave.length) {
         for (const product of LocalSave) {
             if (!product.quantity) {
